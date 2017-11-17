@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head lang="en">
+<meta charset="UTF-8" />
+<title>在线EXCEL转SQL工具</title>
+</head>
+<body>
+	<div class="get">
+		<div class="am-g">
+			<div class="am-form-group am-form-file">
+				<button type="button" class="am-btn am-btn-danger am-btn-default">
+					<i class="am-icon-cloud-upload"></i> 选择要上传的文件
+				</button>
+				<input id="file" type="file" required multiple>
+			</div>
+			<div id="file-list"></div>
+		</div>
+		<button class="am-btn am-btn-default" id="uploadToSql">
+			<i class="am-icon-check"></i> 上传并生成
+		</button>
+		<a class="am-btn am-btn-primary am-disabled" id="downloadSql"
+			href="/excel/download-sql-txt"> 下载SQL<i
+			class="am-icon-cloud-download"></i>
+		</a>
+	</div>
+	<div id="transfer-rate"
+		class="am-progress am-progress-striped am-progress-lg am-active am-hide">
+		<div id="real-time-rate" class="am-progress-bar am-progress-bar-secondary" style="width: 0%"></div>
+	</div>
+
+	<div class="detail">
+		<div class="am-g am-container">
+			<div class="am-u-lg-12">
+				<h4 class="detail-h2">我也不知道有没有用</h4>
+				<hr />
+				<font>TIPS</font><br>
+				<font>1.如果需要对应的 字段加入引号，请在对应的第一行的字段后加入%s</font><br>
+				<font>2.文件名即为表名</font>
+				<hr />
+				<div class="am-g">
+					<div class="am-u-lg-6 am-u-md-6 am-u-sm-12 detail-mb">
+						<h3 class="detail-h3">
+							<i class="am-icon-cogs am-icon-sm"></i> Excel
+						</h3>
+						<img src="/assets/i/e2s/Excel.png" class="am-img-responsive"
+							alt="" />
+					</div>
+					<div class="am-u-lg-6 am-u-md-6 am-u-sm-12 detail-mb">
+						<h3 class="detail-h3">
+							<i class="am-icon-cogs am-icon-sm"></i> 转换后的SQL
+						</h3>
+						<img src="/assets/i/e2s/sql.png" class="am-img-responsive" alt="" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$(function() {
+			$('#file').on(
+					'change',
+					function() {
+						var fileNames = '';
+						$.each(this.files, function() {
+							fileNames += '<span class="am-badge">' + this.name
+									+ '</span> ';
+						});
+						$('#file-list').html(fileNames);
+					});
+		});
+
+		$("#uploadToSql").click(function() {
+			var formData = new FormData();
+			formData.append('file', $('#file')[0].files[0]);
+			$.ajax({
+				url : '/excel/upload-to-sql',
+				type : 'POST',
+				cache : false,
+				data : formData,
+				processData : false,
+				contentType : false,
+				success : function(result) {
+					if (result.code == 1) {
+						$("#downloadSql").removeClass("am-disabled");
+						
+						// 停止轮询
+						$("#real-time-rate").attr("style","width:0%");
+						$("#transfer-rate").addClass("am-hide");
+						window.clearInterval(countRate);
+					}
+					alert(result.msg)
+				}
+			});
+
+			// 此处加入轮询
+			$("#transfer-rate").removeClass("am-hide");
+			// 此处开始轮询进度
+			var countRate = setInterval(function() {
+
+				$.get("/common/get-rate", {}, function(result) {
+					var rate = Number(result.data)*100;
+					$("#real-time-rate").attr("style","width:"+ rate + "%")
+					console.log(rate)
+				});
+			}, 1500);
+		});
+	</script>
+</body>
+</html>

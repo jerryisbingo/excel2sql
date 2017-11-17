@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head lang="en">
+<meta charset="UTF-8">
+<title><sitemesh:write property='title' /></title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="alternate icon" type="image/png" href="/assets/i/favicon.png" />
+<link rel="stylesheet" href="/assets/css/amazeui.min.css" />
+<link rel="stylesheet" href="/assets/css/app.css" />
+<!--[if lt IE 9]>
+		<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+		<script src="/assets/js/amazeui.ie8polyfill.min.js"></script>
+	<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="/assets/js/amazeui.min.js"></script>
+</head>
+<body>
+	<header class="am-topbar am-topbar-fixed-top">
+		<div class="am-container">
+			<h1 class="am-topbar-brand">
+				<a href="/">EXCEL转SQL工具</a>
+			</h1>
+
+			<button
+				class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
+				data-am-collapse="{target: '#collapse-head'}">
+				<span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span>
+			</button>
+
+			<div class="am-collapse am-topbar-collapse" id="collapse-head">
+				<ul class="am-nav am-nav-pills am-topbar-nav">
+					<li class="am-active"><a href="/">首页</a></li>
+					<li><a href="javascript:alert('没想好放什么')">其他</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+
+	<sitemesh:write property='body' />
+
+	<footer class="footer">
+		<!-- <p>
+			© 2014 <a href="http://www.yunshipei.com" target="_blank">AllMobilize,
+				Inc.</a> Licensed under <a href="http://opensource.org/licenses/MIT"
+				target="_blank">MIT license</a>. by the AmazeUI Team.
+		</p> -->
+	</footer>
+</body>
+</html>
