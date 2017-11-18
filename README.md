@@ -15,7 +15,7 @@ excel转sql语句，在线EXCEL转SQL insert语句的小项目。  
   3.转换采用for循环，待优化  
   4.已转换的文件定时删除  
   
- ![image](//note.youdao.com/yws/public/resource/2aa71a0e8c707b08e5f1ade57bd7fe40/xmlnote/E0A6C31539E847A2855DB589FA78A584/889)
+ ![image](http://note.youdao.com/yws/public/resource/2aa71a0e8c707b08e5f1ade57bd7fe40/xmlnote/E0A6C31539E847A2855DB589FA78A584/889)
     
  
- ![image](//note.youdao.com/yws/public/resource/2aa71a0e8c707b08e5f1ade57bd7fe40/xmlnote/0455D964DDE948F6B6C5D1030D79D8F1/885)
+ ![image](http://note.youdao.com/yws/public/resource/2aa71a0e8c707b08e5f1ade57bd7fe40/xmlnote/0455D964DDE948F6B6C5D1030D79D8F1/885)
