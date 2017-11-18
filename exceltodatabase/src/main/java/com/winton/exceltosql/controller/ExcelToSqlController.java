@@ -57,8 +57,6 @@ public class ExcelToSqlController {
 		String sqlName = rootPath + RandomUtil.randomUUID() + ".txt";
 		request.getSession().setAttribute(SQLFILEPATH_SESSION_KEY, sqlName);
 		
-		System.out.println(request.getSession().getAttribute(SQLFILEPATH_SESSION_KEY));
-		
 		excelToSqlService.readDataFromExcel(file,sqlName);
 		request.getSession().removeAttribute(SQLFILEPATH_SESSION_KEY);
 		return R.ok("上传生成成功，请点击下载");

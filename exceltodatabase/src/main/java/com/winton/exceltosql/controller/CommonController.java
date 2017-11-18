@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -37,7 +38,7 @@ public class CommonController {
 	@GetMapping(value="/get-rate")
 	@ResponseBody
 	public R getRate(HttpServletRequest request) {
-		String key = request.getSession().getAttribute(ExcelToSqlController.SQLFILEPATH_SESSION_KEY).toString();
+		String key = String.valueOf(request.getSession().getAttribute(ExcelToSqlController.SQLFILEPATH_SESSION_KEY));
 		return R.ok(Optional.ofNullable(redis.opsForValue().get(key)).orElse("0"),"获取进度成功");
 	}
 	
