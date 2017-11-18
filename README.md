@@ -1,4 +1,4 @@
-# excel2sql
+# excel to sql
 excel转sql语句，在线EXCEL转SQL insert语句的小项目。  
   
 >springboot + redis + layui，其他辅助：sitemesh3+hutool  
