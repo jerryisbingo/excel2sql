@@ -1,5 +1,7 @@
 package com.winton.exceltosql.common.exception;
 
+import java.io.FileNotFoundException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,6 +26,8 @@ public class MyExceptionHandler {
 			return R.error("文件类型不支持");
 		} else if(e instanceof MissingServletRequestPartException) {
 			return R.error("参数不能为空");
+		} else if(e instanceof FileNotFoundException) {
+			return R.error("文件不存在");
 		}
 		return R.error("系统异常");
 	}

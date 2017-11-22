@@ -4,9 +4,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.winton.exceltosql.common.R;
-import com.winton.exceltosql.core.common.ExcelParserProxy;
+import com.winton.exceltosql.service.ExcelToSqlService;
 
 /**
  * 公用controller
@@ -38,8 +36,9 @@ public class CommonController {
 	@GetMapping(value="/get-rate")
 	@ResponseBody
 	public R getRate(HttpServletRequest request) {
-		String key = String.valueOf(request.getSession().getAttribute(ExcelToSqlController.SQLFILEPATH_SESSION_KEY));
-		return R.ok(Optional.ofNullable(redis.opsForValue().get(key)).orElse("0"),"获取进度成功");
+		String key = String.valueOf(request.getSession().getAttribute(ExcelToSqlService.SQLFILEPATH_SESSION_KEY));
+		String rate = Optional.ofNullable(redis.opsForValue().get(key)).orElse("0");
+		return R.ok(rate,"获取进度成功");
 	}
 	
 }

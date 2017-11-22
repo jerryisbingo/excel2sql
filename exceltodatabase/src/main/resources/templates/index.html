@@ -21,10 +21,8 @@
 		<button class="am-btn am-btn-default" id="uploadToSql">
 			<i class="am-icon-check"></i> 上传并生成
 		</button>
-		<a class="am-btn am-btn-primary am-disabled" id="downloadSql"
-			href="/excel/download-sql-txt"> 下载SQL<i
-			class="am-icon-cloud-download"></i>
-		</a>
+		<button class="am-btn am-btn-primary am-disabled" id="downloadSql"> 下载SQL<i class="am-icon-cloud-download"></i>
+		</button>
 	</div>
 	<div id="transfer-rate"
 		class="am-progress am-progress-striped am-progress-lg am-active am-hide">
@@ -107,6 +105,16 @@
 					console.log(rate)
 				});
 			}, 1500);
+		});
+		
+		$("#downloadSql").click(function() {
+			$.get("/excel/has-file",{},function(result) {
+				if (result.code == 1) {
+					window.open("/excel/download-sql-txt")
+				} else {
+					alert(result.msg);
+				}
+			});
 		});
 	</script>
 </body>
