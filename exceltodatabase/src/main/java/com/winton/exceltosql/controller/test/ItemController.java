@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.winton.exceltosql.common.R;
 import com.winton.exceltosql.model.entity.test.Item;
 import com.winton.exceltosql.model.mapper.test.ItemMapper;
@@ -16,7 +17,7 @@ import com.xiaoleilu.hutool.json.JSONUtil;
 
 /**
  * <p>
- *  前端控制器
+ *  测试用例
  * </p>
  *
  * @author Yanghu
@@ -29,18 +30,37 @@ public class ItemController {
 	@Autowired
 	ItemMapper dao;
 	
+	/**
+	 * 普通调用
+	 * @return
+	 * @author winton
+	 * @since 2017年11月24日
+	 */
 	@GetMapping
 	@ResponseBody
 	public R test() {
 		return R.ok(dao.selectById(1),"");
 	}
 	
+	/**
+	 * 分页插件测试
+	 * @return
+	 * @author winton
+	 * @since 2017年11月24日
+	 */
 	@GetMapping(value={"page"})
 	@ResponseBody
 	public R page() {
-		return R.ok(dao.selectPage(RowBounds.DEFAULT, null),"");
+		PageInfo<Item> doSelectPageInfo = PageHelper.startPage(1, 10).doSelectPageInfo(() -> dao.selectById(1));
+		return R.ok(doSelectPageInfo,"");
 	}
 	
+	/**
+	 * mapper自定义
+	 * @return
+	 * @author winton
+	 * @since 2017年11月24日
+	 */
 	@GetMapping(value={"xml"})
 	@ResponseBody
 	public R mapperxml() {
