@@ -1,4 +1,4 @@
-package com.winton.exceltosql.controller;
+package com.winton.exceltosql.controller.excelparser;
 
 import java.io.File;
 import java.io.IOException;

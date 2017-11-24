@@ -1,4 +1,4 @@
-package com.winton.exceltosql.core.common;
+package com.winton.exceltosql.core.servicehelper.excelparser;
 
 import java.io.File;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
-import com.winton.exceltosql.core.sql.MySqlStr;
+import com.winton.exceltosql.core.servicehelper.excelparser.MySqlStr;
 import com.xiaoleilu.hutool.log.Log;
 import com.xiaoleilu.hutool.log.LogFactory;
 import com.xiaoleilu.hutool.util.NumberUtil;

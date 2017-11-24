@@ -1,4 +1,4 @@
-package com.winton.exceltosql.controller;
+package com.winton.exceltosql.controller.excelparser;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

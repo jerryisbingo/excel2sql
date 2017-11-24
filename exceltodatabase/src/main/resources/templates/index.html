@@ -85,11 +85,11 @@
 					if (result.code == 1) {
 						$("#downloadSql").removeClass("am-disabled");
 						
-						// 停止轮询
 						$("#real-time-rate").attr("style","width:0%");
 						$("#transfer-rate").addClass("am-hide");
-						window.clearInterval(countRate);
 					}
+					// 停止轮询
+					window.clearInterval(countRate);
 					alert(result.msg)
 				}
 			});

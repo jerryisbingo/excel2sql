@@ -1,4 +1,4 @@
-package com.winton.exceltosql.core.sql;
+package com.winton.exceltosql.core.servicehelper.excelparser;
 
 import java.io.File;
 import java.util.List;
