@@ -51,7 +51,7 @@ public class ItemController {
 	@GetMapping(value={"page"})
 	@ResponseBody
 	public R page() {
-		PageInfo<Item> doSelectPageInfo = PageHelper.startPage(1, 10).doSelectPageInfo(() -> dao.selectById(1));
+		PageInfo<Item> doSelectPageInfo = PageHelper.startPage(1, 2).doSelectPageInfo(() -> dao.selectList(null));
 		return R.ok(doSelectPageInfo,"");
 	}
 	
